@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Apis\Rest\Api\GetDataManagementInterface" type="Apis\Rest\Model\GetDataManagement"/>
+	<preference for="Apis\Rest\Api\AddDataManagementInterface" type="Apis\Rest\Model\AddDataManagement"/>
+	<preference for="Apis\Rest\Api\EditDataManagementInterface" type="Apis\Rest\Model\EditDataManagement"/>
+	<preference for="Apis\Rest\Api\DeleteDataManagementInterface" type="Apis\Rest\Model\DeleteDataManagement"/>
+</config>

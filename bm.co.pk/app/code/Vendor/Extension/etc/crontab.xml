@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+	<group id="default">
+       <job instance="Vendor\Extension\Cron\Hotseller" method="execute" name="Hot_seller">
+			<schedule>* 7 * * *</schedule>
+		</job>
+        <job instance="Vendor\Extension\Cron\Reversecron" method="execute" name="Reverse_cron">
+			<schedule>* 7 * * *</schedule>
+		</job>
+
+		<job instance="Vendor\Extension\Cron\Backupcron" method="execute" name="Backup_cron">
+			<schedule> * * * * *</schedule>
+		</job>
+        
+	</group>
+</config>

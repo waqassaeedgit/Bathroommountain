@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+     <!-- Main menu -->
+     <add id="SyncIt_Core::syncit"
+         title="SyncIt Group"
+         translate="title"
+         module="SyncIt_Core"
+         sortOrder="50"
+         resource="Magento_Backend::content"
+     />
+     <!-- Main menu Title -->
+     <add id="SyncIt_Brand::syncit_general"
+         title="Brand Settings"
+         translate="title"
+         module="SyncIt_Brand"
+         sortOrder="60"
+         parent="SyncIt_Core::syncit"
+         resource="Magento_Backend::content"
+     />
+     <!-- Sub menu items -->
+     <add id="SyncIt_Brand::syncit_brand_brand"
+         title="Manage Brands"
+         module="SyncIt_Brand"
+         translate="title"
+         sortOrder="30"
+         resource="Magento_Backend::content"
+         parent="SyncIt_Brand::syncit_general"
+         action="syncit_brand/brand/index/"
+     />
+  </menu>
+</config>

@@ -1,0 +1,48 @@
+<?php
+
+namespace Devhooks\HelloWorld\Setup\Patch\Data;
+
+use Magento\Framework\Setup\Patch\DataPatchInterface;
+use Magento\Framework\Module\Setup\Migration;
+use Magento\Framework\Setup\ModuleDataSetupInterface;
+
+class AddData implements DataPatchInterface
+{
+     private $HelloWorldFactory;
+
+     public function __construct(
+          \Vendor\Extension\Model\HelloWorldFactory $HelloWorldFactory
+     ) {
+          $this->HelloWorldFactory = $HelloWorldFactory;
+     }
+
+     public function apply()
+     {
+          $sampleData = [
+               [
+                    'name' => 'name', 
+                    'sku' => 'sku', 
+                    'price' => 'price'
+               ],
+               [
+                    'name' => 'name', 
+                    'sku' => 'sku', 
+                    'price' => 'price'
+               ]
+          ];
+          foreach ($sampleData as $data) {
+               $this->HelloWorldFactory->create()->setData($data)->save();
+          }
+     }
+
+     public static function getDependencies()
+     {
+          return [];
+     }
+
+     public function getAliases()
+     {
+          return [];
+     }
+     
+}

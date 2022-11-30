@@ -1,0 +1,102 @@
+<?php
+namespace Vendor\Extension\Controller\Adminhtml\Product;
+//use Magento\Framework\ObjectManager\ObjectManager;
+use Exception;
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\HttpPostActionInterface;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Filesystem\DirectoryList;
+ 
+class Data extends \Magento\Backend\App\Action
+ 
+{
+ 
+    protected $_productCollectionFactory;
+        
+    public function __construct(
+        //\Magento\Framework\ObjectManager\ObjectManager $objectManager,
+        \Magento\Framework\App\ResourceConnection $resource,
+        Context $context,
+        DirectoryList $directoryList,    
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,  
+        \Vendor\Extension\Model\ProductFactory $products,      
+        array $data = []
+    ) {    
+          
+        $this->_productCollectionFactory = $productCollectionFactory; 
+        parent::__construct($context, $data);
+        $this->resourceCon = $resource->getConnection();
+        $this->_product = $products;
+        $this->directoryList = $directoryList;
+
+      
+    }
+    
+    public function getProductCollection()
+    {
+        $collection = $this->_productCollectionFactory->create();
+        $collection->addAttributeToSelect('*');
+      
+        return $collection;
+    
+    }
+    // public function getCollection(){
+
+    //     return $this->_product->create()->getCollection();
+
+    // }
+    public function execute()
+    {
+        // $getdata=$this->getCollection()->getData();
+        //   echo"<pre>";
+        //   foreach ($getdata as $product) {
+        //   $x=$product['price'];
+        // // print_r($x);
+        //   }
+        // die("");
+        $productCollection = $this->getProductCollection();
+        $model = $this->_product->create();
+        foreach ($productCollection as $product) {
+            
+            $x=$product->getData();
+                    
+
+            $model->setData([
+ 
+                "name" => $x['name'],
+                "sku" => $x['sku'],
+                "price"=> $x['price']
+             
+            ]);
+
+                $saveData = $model->save();
+             
+        }
+        if($saveData)
+        {
+
+           $this->messageManager->addSuccess( __('Insert data Successfully !') );
+       }
+ 
+
+
+    }
+ 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/apisRest/getdata/:sku" method="GET">
+		<service class="Apis\Rest\Api\GetDataManagementInterface" method="getData"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/apisRest/adddata/:name" method="POST">
+		<service class="Apis\Rest\Api\AddDataManagementInterface" method="addData"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/apisRest/editdata/:color" method="PUT">
+		<service class="Apis\Rest\Api\EditDataManagementInterface" method="editData"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+	<route url="/V1/apisRest/deletedata/:sku" method="DELETE">
+		<service class="Apis\Rest\Api\DeleteDataManagementInterface" method="deleteData"/>
+		<resources>
+			<resource ref="anonymous"/>
+		</resources>
+	</route>
+</routes>
